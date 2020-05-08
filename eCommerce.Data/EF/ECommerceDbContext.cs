@@ -1,5 +1,6 @@
 ﻿using eCommerce.Data.Configurations;
 using eCommerce.Data.Entities;
+using eCommerce.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,8 @@ namespace eCommerce.Data.EF
             modelBuilder.ApplyConfiguration(new ProductTranslationConfiguration());
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+
+            modelBuilder.Seed();
         }
 
         public DbSet<Product> Products { get; set; }
