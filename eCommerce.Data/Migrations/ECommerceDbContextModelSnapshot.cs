@@ -205,7 +205,7 @@ namespace eCommerce.Data.Migrations
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2020, 5, 8, 11, 14, 35, 81, DateTimeKind.Local).AddTicks(2433));
+                        .HasDefaultValue(new DateTime(2020, 5, 8, 11, 21, 51, 829, DateTimeKind.Local).AddTicks(2052));
 
                     b.Property<string>("ShipAddress")
                         .IsRequired()
