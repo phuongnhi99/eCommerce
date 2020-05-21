@@ -4,7 +4,8 @@ using System.Text;
 
 namespace eCommerce.Application.Catalog.Products
 {
-    class PublicProductService
+    public class PublicProductService
     {
+        public int categoryId { get; set; }
     }
 }
