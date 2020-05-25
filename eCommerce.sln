@@ -3,16 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store", "Store\Store.csproj", "{9BACABA2-2761-458E-9368-7E58C0153D91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store", "Store\Store.csproj", "{9BACABA2-2761-458E-9368-7E58C0153D91}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0986389D-618A-43CA-A47C-F4D6E4C4F823}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Data", "eCommerce.Data\eCommerce.Data.csproj", "{09B161AF-6F83-4AB3-B82F-5B946D678D52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.Data", "eCommerce.Data\eCommerce.Data.csproj", "{09B161AF-6F83-4AB3-B82F-5B946D678D52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Application", "eCommerce.Application\eCommerce.Application.csproj", "{4AAE539B-F70B-4AA8-A19A-0D9933D9FAAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.Application", "eCommerce.Application\eCommerce.Application.csproj", "{4AAE539B-F70B-4AA8-A19A-0D9933D9FAAC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.Utilities", "eCommerce.Utilities\eCommerce.Utilities.csproj", "{3D61250F-8604-4B21-A942-2EFB7A21F31D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,10 @@ Global
 		{4AAE539B-F70B-4AA8-A19A-0D9933D9FAAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AAE539B-F70B-4AA8-A19A-0D9933D9FAAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AAE539B-F70B-4AA8-A19A-0D9933D9FAAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D61250F-8604-4B21-A942-2EFB7A21F31D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D61250F-8604-4B21-A942-2EFB7A21F31D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D61250F-8604-4B21-A942-2EFB7A21F31D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D61250F-8604-4B21-A942-2EFB7A21F31D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

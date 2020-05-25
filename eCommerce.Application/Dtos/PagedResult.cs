@@ -5,9 +5,10 @@ using System.Xml.Schema;
 
 namespace eCommerce.Application.Dtos
 {
-    public class PagedViewModel<T>
+    public class PagedResult<T>
     {
-        List<T> Items { set; get; }
+
+        public List<T> Items { set; get; }
         public int TotalRecord { set; get; }
     }
 }
