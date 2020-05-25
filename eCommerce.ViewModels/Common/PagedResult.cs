@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Schema;
 
-namespace eCommerce.Application.Dtos
+namespace eCommerce.ViewModels.Common
 {
     public class PagedResult<T>
     {

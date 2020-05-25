@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerce.Data.EF;
 
 namespace eCommerce.Data.Migrations
 {
     [DbContext(typeof(ECommerceDbContext))]
-    partial class ECommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200525104218_FileLengthType")]
+    partial class FileLengthType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,7 +182,7 @@ namespace eCommerce.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "45bb0da1-0e25-465a-9c4a-0c773111cecd",
+                            ConcurrencyStamp = "93166e73-d381-4f4f-af74-7c4675a830a1",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -257,7 +259,7 @@ namespace eCommerce.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "741336e4-0b0b-4b0d-9a19-9bf9c5566ecb",
+                            ConcurrencyStamp = "deb5904f-1af6-43ee-a526-645dbca825b6",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
@@ -266,7 +268,7 @@ namespace eCommerce.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEP3WP/J3r47TdI47TWlTQ92/3BceioD/bfr8DRO0/1HjBocj3n+4QtVLqZVRDmFFQA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOJvu4aLQdr674HAdmQ6uSodPSdk90eO14rMiCL1BF7ZLdAg4DtNZx31mbrwGnB4kA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -614,7 +616,7 @@ namespace eCommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2020, 5, 25, 17, 44, 33, 185, DateTimeKind.Local).AddTicks(9484),
+                            DateCreated = new DateTime(2020, 5, 25, 17, 42, 16, 903, DateTimeKind.Local).AddTicks(8559),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,

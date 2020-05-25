@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace eCommerce.Data.Entities
+namespace eCommerce.ViewModels.Catalog.Products
 {
-    public class ProductImage
+    public class ProductImageViewModel
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
@@ -14,6 +14,5 @@ namespace eCommerce.Data.Entities
         public DateTime DateCreated { get; set; }
         public int SortOrder { get; set; }
         public long FileSize { get; set; }
-        public Product Product { get; set; }
     }
 }
