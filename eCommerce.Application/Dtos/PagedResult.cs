@@ -8,7 +8,7 @@ namespace eCommerce.Application.Dtos
     public class PagedResult<T>
     {
 
-        List<T> Items { set; get; }
+        public List<T> Items { set; get; }
         public int TotalRecord { set; get; }
     }
 }

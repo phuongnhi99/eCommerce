@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.Data", "eCommerce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.Application", "eCommerce.Application\eCommerce.Application.csproj", "{4AAE539B-F70B-4AA8-A19A-0D9933D9FAAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.Utilities", "eCommerce.Utilities\eCommerce.Utilities.csproj", "{3D61250F-8604-4B21-A942-2EFB7A21F31D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.Utilities", "eCommerce.Utilities\eCommerce.Utilities.csproj", "{3D61250F-8604-4B21-A942-2EFB7A21F31D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

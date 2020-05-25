@@ -1,7 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.VariantTypes;
 using eCommerce.Application.Catalog.Products.Dtos;
 using eCommerce.Application.Catalog.Products.Dtos.Manage;
-using eCommerce.Application.Catalog.Products.Dtos.Public;
 using eCommerce.Application.Dtos;
 using eCommerce.Data.EF;
 using eCommerce.Data.Entities;
@@ -19,7 +19,6 @@ namespace eCommerce.Application.Catalog.Products
     public class ManageProductService : IManageProductService
     {
         private readonly ECommerceDbContext _context;
-        private object[] productId;
 
         public ManageProductService(ECommerceDbContext context)
         {
@@ -61,7 +60,7 @@ namespace eCommerce.Application.Catalog.Products
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Delete(int productID)
+        public async Task<int> Delete(int productId)
         {
             var product = await _context.Products.FindAsync(productId);
             if (product == null) throw new ECommerceException($"Can not find a product: {productId}");
@@ -69,12 +68,12 @@ namespace eCommerce.Application.Catalog.Products
             return await _context.SaveChangesAsync();
         }
 
-        //public async Task<List<ProductViewModel>> GetAll()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<List<ProductViewModel>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
         {
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId
@@ -117,34 +116,34 @@ namespace eCommerce.Application.Catalog.Products
             return pagedResult;
         }
 
-        public Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<int> Update(ProductUpdateRequest request)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(request.Id);
+            var productTranlations = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id && x.LanguageId == request.LanguageId);
+            if (product == null || productTranlations == null) throw new ECommerceException($"Can not find a product: {request.Id}");
+            productTranlations.Name = request.Name;
+            productTranlations.SeoAlias = request.SeoAlias;
+            productTranlations.SeoDescription = request.SeoDescription;
+            productTranlations.SeoTitle = request.SeoTitle;
+            productTranlations.Description = request.Description;
+            productTranlations.Details = request.Details;
+            return await _context.SaveChangesAsync();
         }
 
-        public Task<bool> UpdatePrice(int productId, decimal newPrice)
+        public async Task<bool> UpdatePrice(int productId, decimal newPrice)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null) throw new ECommerceException($"Can not find a product: {productId}");
+            product.Price = newPrice;
+            return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> UpdateStock(int productId, int addedQuantity)
+        public async Task<bool> UpdateStock(int productId, int addedQuantity)
         {
-            throw new NotImplementedException();
-        }
-
-        Task<List<ProductViewModel>> IManageProductService.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<PagedResult<ProductViewModel>> IManageProductService.GetAllPaging(GetProductPagingRequest request)
-        {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null) throw new ECommerceException($"Can not find a product: {productId}");
+            product.Stock += addedQuantity;
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }
