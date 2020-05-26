@@ -17,8 +17,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.Utilities", "eCommerce.Utilities\eCommerce.Utilities.csproj", "{3D61250F-8604-4B21-A942-2EFB7A21F31D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.ViewModels", "eCommerce.ViewModels\eCommerce.ViewModels.csproj", "{569DC330-E906-4FC0-83CB-178C4732C265}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eCommerce.BackendApi", "eCommerce.BackendApi\eCommerce.BackendApi.csproj", "{E5DD6C3B-56E6-404B-8FD9-6E8CFB53D319}"
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
