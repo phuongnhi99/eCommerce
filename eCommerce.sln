@@ -18,6 +18,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.ViewModels", "eCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.BackendApi", "eCommerce.BackendApi\eCommerce.BackendApi.csproj", "{E5DD6C3B-56E6-404B-8FD9-6E8CFB53D319}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.WebApp", "eCommerce.WebApp\eCommerce.WebApp.csproj", "{090FD45D-AAC5-40A0-B698-FB4F058E2D54}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerce.AdminApp", "eCommerce.AdminApp\eCommerce.AdminApp.csproj", "{44973D84-4E4F-4541-8B11-A280E4CE4D57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
