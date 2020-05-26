@@ -1,5 +1,7 @@
-﻿using eCommerce.ViewModels.Catalog.Products;
+﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
+using eCommerce.ViewModels.Catalog.Products;
 using eCommerce.ViewModels.Common;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace eCommerce.Application.Catalog.Products
@@ -7,5 +9,7 @@ namespace eCommerce.Application.Catalog.Products
     public interface IPublicProductService
     {
         Task<PagedResult<ProductViewModel>> GetAllByCategoryId(GetPublicProductPagingRequest request);
+
+        Task<List<ProductViewModel>> GetAll();
     }
 }
