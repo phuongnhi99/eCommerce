@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eCommerce.BackendApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/apii/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
