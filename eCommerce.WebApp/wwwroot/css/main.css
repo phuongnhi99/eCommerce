@@ -1028,10 +1028,10 @@ h1, h2, h3, h4, h5, h6 {
       .header_area .navbar .navbar-collapse {
         margin-top: 30px; }
         .header_area .navbar .navbar-collapse .nav-item {
-          padding: 10px; } }
+          padding: 1px; } }
     .header_area .navbar .navbar-toggler .icon-bar {
       color: #000;
-      height: 2px;
+      height: px;
       width: 20px;
       content: "";
       background: #000;
@@ -3149,9 +3149,10 @@ label {
       border-radius: 0px; }
 
 .pagination {
-  margin-top: 10px;
-  border-left: 1px solid #eee;
-  border-radius: 0px; }
+    margin-top: 10px;
+    border-left: 1px solid #eee;
+    border-radius: 0px;
+}
   .pagination a {
     width: 40px;
     line-height: 40px;
