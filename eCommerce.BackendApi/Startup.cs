@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using eCommerce.Application.Catalog.Products;
 using eCommerce.Application.Common;
+using eCommerce.Application.System.Users;
 using eCommerce.Data.EF;
+using eCommerce.Data.Entities;
 using eCommerce.Utilities.Constants;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +34,10 @@ namespace eCommerce.BackendApi
         {
             services.AddDbContext<ECommerceDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));
+           
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<ECommerceDbContext>()
+                .AddDefaultTokenProviders();
 
             //Declare DI
             services.AddTransient<IStorageService, FileStorageService>();
@@ -38,6 +45,10 @@ namespace eCommerce.BackendApi
 
             services.AddTransient<IPublicProductService, PublicProductService>();
             services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+            services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddControllersWithViews();
 
