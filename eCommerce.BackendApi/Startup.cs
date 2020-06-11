@@ -46,8 +46,6 @@ namespace eCommerce.BackendApi
 
             //Declare DI
             services.AddTransient<IStorageService, FileStorageService>();
-
-
             services.AddTransient<IPublicProductService, PublicProductService>();
             services.AddTransient<IManageProductService, ManageProductService>();
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
