@@ -1,0 +1,178 @@
+﻿@{
+    ViewData["Title"] = "Sản phẩm";
+}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-2 text-gray-800">Sản phẩm</h1>
+        <button class="btn btn-info small" type="button" data-toggle="modal" data-target="#add" aria-expanded="false" aria-controls="add">Thêm</button>
+        <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Thêm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post">
+                            @*<div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="userName">Tài khoản</label>
+                                        <input type="text" class="form-control" id="userName" placeholder="Tài khoản">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="firstName">Tên</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="Tên">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="lastName">Họ</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="Họ">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="email">Email</label>
+                                        <input type="text" class="form-control" id="email" placeholder="Email">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="phone">Số điện thoại</label>
+                                        <input type="text" class="form-control" id="email" placeholder="Số điện thoại">
+                                    </div>
+                                </div>*@
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-info">Lưu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá nhập</th>
+                            <th>Giá bán</th>
+                            <th>Số lượng</th>
+                            <th>Mô tả</th>
+                            <th>Tùy chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Giày</td>
+                            <td>1.000.000</td>
+                            <td>2.000.000</td>
+                            <td>10</td>
+                            <td>Mô tả</td>
+                            <td>
+                                <button class="btn btn-outline-info small" type="button" data-toggle="modal" data-target="#delete" aria-expanded="false" aria-controls="delete">Hình ảnh</button>
+                                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Xóa</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Bạn chắc chắn muốn xóa tài khoản này?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-success small" type="button" data-toggle="modal" data-target="#update" aria-expanded="false" aria-controls="update">Sửa</button>
+                                <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Sửa</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form method="post">
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-4">
+                                                            <label for="userName">Tài khoản</label>
+                                                            <input type="text" class="form-control" id="userName" placeholder="Tài khoản">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="firstName">Tên</label>
+                                                            <input type="text" class="form-control" id="firstName" placeholder="Tên">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label for="lastName">Họ</label>
+                                                            <input type="text" class="form-control" id="lastName" placeholder="Họ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            <label for="email">Email</label>
+                                                            <input type="text" class="form-control" id="email" placeholder="Email">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label for="phone">Số điện thoại</label>
+                                                            <input type="text" class="form-control" id="email" placeholder="Số điện thoại">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-info">Lưu</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-danger small" type="button" data-toggle="modal" data-target="#delete" aria-expanded="false" aria-controls="delete">Xóa</button>
+                                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Xóa</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Bạn chắc chắn muốn xóa tài khoản này?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
