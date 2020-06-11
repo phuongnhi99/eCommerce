@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace eCommerce.AdminApp.Controllers
+namespace eCommerce.WebApp.Controllers
 {
-    public class CustomerController : Controller
+    public class CartController : Controller
     {
         public IActionResult Index()
         {

@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "Thông tin mua hàng";
+}
+
+<section class="checkout_area c-section_gap">
+    <div class="container">
+        <div class="returning_customer">
+            <div class="check_title">
+                <h2>Bạn vui lòng đăng nhập để mua hàng. <a asp-controller="Login" asp-action="Index">Click để đăng nhập</a></h2>            
+            </div>
+        </div>
+        <div class="billing_details">
+            <div class="row pt-1">
+                <div class="col-lg-5">
+                    <h3>Thông tin giao hàng</h3>
+                    <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                        <div class="col-md-6 form-group p_star">
+                            <input type="text" class="form-control" id="first" name="name">
+                            <span class="placeholder" data-placeholder="Tên"></span>
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input type="text" class="form-control" id="last" name="name">
+                            <span class="placeholder" data-placeholder="Họ"></span>
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" id="number" name="number">
+                            <span class="placeholder" data-placeholder="Số điện thoại"></span>
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" id="email" name="compemailany">
+                            <span class="placeholder" data-placeholder="Email"></span>
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" id="add1" name="add1">
+                            <span class="placeholder" data-placeholder="Địa chỉ"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-7">
+                    <div class="order_box">
+                        <h2>Thông tin đơn hàng</h2>
+                        <ul class="list">
+                            <li><a href="#">Sản phẩm <span>Giá</span></a></li>
+                            <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                            <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                            <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                        </ul>
+                        <ul class="list list_2">
+                            <li><a href="#">Tạm tính <span>$2160.00</span></a></li>
+                            <li><a href="#">Phí giao hàng <span>$50.00</span></a></li>
+                            <li><a href="#">Tổng cộng <span>$2210.00</span></a></li>
+                        </ul>
+
+                    </div>
+                    <div class="order_box">
+                        <h2>Phương thức thanh toán</h2>
+                        <div class="payment_item">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option5" name="selector">
+                                <label for="f-option5">Thanh toán khi nhận hàng</label>
+                                <div class="check"></div>
+                            </div>
+                        </div>
+                        <div class="payment_item active">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option6" name="selector">
+                                <label for="f-option6">Thanh toán online</label>
+                                <img src="img/product/card.jpg" alt="">
+                                <div class="check"></div>
+                            </div>
+                        </div>
+                        <a class="primary-btn" href="#">Đặt hàng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
