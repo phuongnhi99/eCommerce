@@ -43,7 +43,7 @@ namespace eCommerce.AdminApp.Controllers
         public async Task<IActionResult> Login(LoginRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+                return View("Login", request);
 
             var token = await _userApiClient.Authenticate(request);
 
