@@ -33,15 +33,15 @@ namespace eCommerce.Application.System.Users
             _config = config;
         }
 
-        public async Task<string> Authencate(LoginRequest request)
+        public async Task<ApiResult<string>> Authencate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
-            if (user == null) return null;
+            if (user == null) return new ApiErrorResult<string>("Tài khoản hoặc mật khẩu không đúng");
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, true);
             if(!result.Succeeded)
             {
-                return null;
+                return new ApiErrorResult<string>("Tài khoản hoặc mật khẩu không đúng");
             }
 
             var roles = await _userManager.GetRolesAsync(user);
@@ -62,17 +62,16 @@ namespace eCommerce.Application.System.Users
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: creds);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new ApiSuccessResult<string>(new JwtSecurityTokenHandler().WriteToken(token));
         }
 
-        
         public async Task<PagedResult<UserVm>> GetUsersPaging(GetUserPagingRequest request)
         {
             var query = _userManager.Users;
-            /*if(string.IsNullOrEmpty(request.Keyword))
-            {
-                query = query.Where(x => x.UserName.Contains(request.Keyword) || x.PhoneNumber.Contains(request.Keyword));
-            }*/
+            //if(string.IsNullOrEmpty(request.Keyword))
+            //{
+            //    query = query.Where(x => x.UserName.Contains(request.Keyword) || x.PhoneNumber.Contains(request.Keyword));
+            //}
 
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)

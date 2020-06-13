@@ -9,7 +9,7 @@ namespace eCommerce.AdminApp.Services
 {
     public interface IUserApiClient
     {
-        Task<string> Authenticate(LoginRequest request);
+        Task<ApiResult<string>> Authenticate(LoginRequest request);
         Task<PagedResult<UserVm>> GetUsersPagings(GetUserPagingRequest request);
     }
 }
