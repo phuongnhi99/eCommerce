@@ -67,7 +67,7 @@ namespace eCommerce.AdminApp.Controllers
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
                 IsPersistent = false
             };
-            HttpContext.Session.SetString("Token", token);
+            HttpContext.Session.SetString("Token", token.ResultObj);
             await HttpContext.SignInAsync(
             CookieAuthenticationDefaults.AuthenticationScheme,
             userPrincipal,
