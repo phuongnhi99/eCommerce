@@ -11,5 +11,6 @@ namespace eCommerce.Application.System.Users
     {
         Task<ApiResult<string>> Authencate(LoginRequest request);
         Task<bool> Register(RegisterRequest request);
+        Task<PagedResult<UserVm>> GetUsersPaging(GetUserPagingRequest request);
     }
 }

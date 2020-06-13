@@ -29,6 +29,7 @@ namespace eCommerce.AdminApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
+           
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
                 options.LoginPath = "/User/Login/";
@@ -36,6 +37,11 @@ namespace eCommerce.AdminApp
             });
             services.AddControllersWithViews()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
 
             services.AddTransient<IUserApiClient, UserApiClient>();
 
@@ -68,6 +74,7 @@ namespace eCommerce.AdminApp
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
