@@ -43,11 +43,15 @@ namespace eCommerce.AdminApp.Controllers
         public async Task<IActionResult> Login(LoginRequest request)
         {
             if (!ModelState.IsValid)
-                return View("Login", request);
+                return View();
 
             var token = await _userApiClient.Authenticate(request);
-
-            var userPrincipal = this.ValidateToken(token);
+            if(token.ResultObj == null)
+            {
+                ModelState.AddModelError("", token.Message);
+                return View();
+            }
+            var userPrincipal = this.ValidateToken(token.ResultObj);
             var authProperties = new AuthenticationProperties
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),

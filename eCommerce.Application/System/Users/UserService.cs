@@ -1,4 +1,5 @@
 ﻿using eCommerce.Data.Entities;
+using eCommerce.ViewModels.Common;
 using eCommerce.ViewModels.System.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -30,15 +31,15 @@ namespace eCommerce.Application.System.Users
             _config = config;
         }
 
-        public async Task<string> Authencate(LoginRequest request)
+        public async Task<ApiResult<string>> Authencate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
-            if (user == null) return null;
+            if (user == null) return new ApiErrorResult<string>("Tài khoản hoặc mật khẩu không đúng");
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, true);
             if(!result.Succeeded)
             {
-                return null;
+                return new ApiErrorResult<string>("Tài khoản hoặc mật khẩu không đúng");
             }
 
             var roles = await _userManager.GetRolesAsync(user);
@@ -59,7 +60,7 @@ namespace eCommerce.Application.System.Users
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: creds);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new ApiSuccessResult<string>(new JwtSecurityTokenHandler().WriteToken(token));
         }
 
         public async Task<bool> Register(RegisterRequest request)

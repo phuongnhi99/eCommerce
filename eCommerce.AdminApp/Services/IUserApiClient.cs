@@ -1,4 +1,5 @@
-﻿using eCommerce.ViewModels.System.Users;
+﻿using eCommerce.ViewModels.Common;
+using eCommerce.ViewModels.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace eCommerce.AdminApp.Services
 {
     public interface IUserApiClient
     {
-        Task<string> Authenticate(LoginRequest request);
+        Task<ApiResult<string>> Authenticate(LoginRequest request);
     }
 }
