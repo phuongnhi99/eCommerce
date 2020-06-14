@@ -37,72 +37,8 @@
                                 <td>@Html.DisplayFor(modelItem => item.Email)</td>
                                 <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
                                 <td>
-                                    <button class="btn btn-outline-success small" type="button" data-toggle="modal" data-target="#update" aria-expanded="false" aria-controls="update">Sửa</button>
-                                    <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Sửa</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form method="post">
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-4">
-                                                                <label for="userName">Tài khoản</label>
-                                                                <input type="text" class="form-control" id="userName">
-                                                            </div>
-                                                            <div class="form-group col-md-4">
-                                                                <label for="firstName">Tên</label>
-                                                                <input type="text" class="form-control" id="firstName">
-                                                            </div>
-                                                            <div class="form-group col-md-4">
-                                                                <label for="lastName">Họ</label>
-                                                                <input type="text" class="form-control" id="lastName">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-6">
-                                                                <label for="email">Email</label>
-                                                                <input type="text" class="form-control" id="email">
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label for="phone">Số điện thoại</label>
-                                                                <input type="text" class="form-control" id="phone">
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                                    <button type="submit" class="btn btn-success">Lưu</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button class="btn btn-outline-danger small" type="button" data-toggle="modal" data-target="#delete" aria-expanded="false" aria-controls="delete">Xóa</button>
-                                    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLongTitle">Xóa</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Bạn chắc chắn muốn xóa tài khoản này?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                                    <button type="submit" class="btn btn-danger">Xác nhận xóa</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @Html.ActionLink("Sửa", "Update", new { id = item.Id }) |
+                                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
                                 </td>
                             </tr>
                          }
