@@ -124,5 +124,12 @@ namespace eCommerce.AdminApp.Controllers
             ModelState.AddModelError("", result.Message);
             return View();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Detail(Guid id)
+        {
+            var result = await _userApiClient.GetById(id);
+            return View(result.ResultObj);
+        }
     }
 }
