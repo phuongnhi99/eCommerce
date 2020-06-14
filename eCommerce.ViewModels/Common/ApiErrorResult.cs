@@ -10,7 +10,6 @@ namespace eCommerce.ViewModels.Common
 
         public ApiErrorResult()
         {
-
         }
 
         public ApiErrorResult(string message)
