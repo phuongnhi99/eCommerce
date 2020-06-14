@@ -84,12 +84,12 @@ namespace eCommerce.Application.System.Users
             }
             var userVm = new UserVm()
             {
-                Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
-                FirstName = user.FirstName,
                 Id = user.Id,
+                UserName = user.UserName,
+                FirstName = user.FirstName,
                 LastName = user.LastName,
-                UserName = user.UserName
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber
             };
             return new ApiSuccessResult<UserVm>(userVm);
         }
