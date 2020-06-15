@@ -134,7 +134,7 @@ namespace eCommerce.Application.System.Users
             }
             if (await _userManager.FindByEmailAsync(request.Email) != null)
             {
-                return new ApiErrorResult<bool>("Emai đã tồn tại");
+                return new ApiErrorResult<bool>("Email đã tồn tại");
             }
 
             user = new AppUser()
