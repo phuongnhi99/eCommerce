@@ -30,16 +30,19 @@ namespace eCommerce.AdminApp.Controllers
 
         public async Task<IActionResult> Employee(string keyword, int pageIndex = 1, int pageSize = 10)
         {
-            //var sessions = HttpContext.Session.GetString("Token");
             var request = new GetUserPagingRequest()
             {
-                //BearerToken = sessions,
                 Keyword = keyword,
                 PageIndex = pageIndex,
                 PageSize = pageSize
             };
             var data = await _userApiClient.GetUsersPagings(request);
-            return View(data);
+            ViewBag.Keyword = keyword;
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMsg = TempData["result"];
+            }
+            return View(data.ResultObj);
         }
 
         [HttpGet]
@@ -54,9 +57,42 @@ namespace eCommerce.AdminApp.Controllers
             if(!ModelState.IsValid)
                 return View();
             var result = await _userApiClient.RegisterUser(request);
-            if (result)
-                return RedirectToAction("Employee", "User");
+            if (result.IsSuccessed)
+                return RedirectToAction("Employee");
+            ModelState.AddModelError("", result.Message);
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id)
+        {
+            var result = await _userApiClient.GetById(id);
+            if (result.IsSuccessed)
+            {
+                var user = result.ResultObj;
+                var updateRequest = new UserUpdateRequest()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    PhoneNumber = user.PhoneNumber,
+                    Id = id
+                };
+                return View(updateRequest);
+            }
+            return RedirectToAction("Error", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(UserUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            var result = await _userApiClient.UpdateUser(request.Id, request);
+            if (result.IsSuccessed)
+                return RedirectToAction("Employee");
+            ModelState.AddModelError("", result.Message);
+            return View(request);
         }
 
         [HttpPost]
@@ -65,6 +101,35 @@ namespace eCommerce.AdminApp.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Remove("Token");
             return RedirectToAction("Index", "Login");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            return View(new UserDeleteRequest()
+            {
+                Id = id
+            });
+            
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(UserDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            var result = await _userApiClient.Delete(request.Id);
+            if (result.IsSuccessed)
+                return RedirectToAction("Employee");
+            ModelState.AddModelError("", result.Message);
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Detail(Guid id)
+        {
+            var result = await _userApiClient.GetById(id);
+            return View(result.ResultObj);
         }
     }
 }
