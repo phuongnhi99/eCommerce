@@ -44,6 +44,7 @@ namespace eCommerce.AdminApp
             });
 
             services.AddTransient<IUserApiClient, UserApiClient>();
+            services.AddTransient<IProductApiClient, ProductApiClient>();
 
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");

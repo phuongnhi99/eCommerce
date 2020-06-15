@@ -1,4 +1,5 @@
-﻿using eCommerce.Data.Entities;
+﻿using eCommerce.Data.EF;
+using eCommerce.Data.Entities;
 using eCommerce.ViewModels.Common;
 using eCommerce.ViewModels.System.Users;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +18,7 @@ namespace eCommerce.Application.System.Users
 {
     public class UserService : IUserService
     {
+        private readonly ECommerceDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<AppRole> _roleManager;
@@ -67,11 +69,18 @@ namespace eCommerce.Application.System.Users
 
         public async Task<PagedResult<UserVm>> GetUsersPaging(GetUserPagingRequest request)
         {
-            var query = _userManager.Users;
-            //if(string.IsNullOrEmpty(request.Keyword))
-            //{
-            //    query = query.Where(x => x.UserName.Contains(request.Keyword) || x.PhoneNumber.Contains(request.Keyword));
-            //}
+            var query = _userManager.Users; 
+            //var query = _context;
+
+            /*var query = from u in _context.Users
+                        join ur in _context.UserRoles on u.Id equals ur.UserId
+                        join ar in _context.AppRoles on ur.RoleId equals ar.Id
+                        select new { u, ar, ur };*/
+
+            /*  if (string.IsNullOrEmpty(request.Keyword))
+              {
+                  query = query.Where(x => x.UserName.Contains(request.Keyword) || x.PhoneNumber.Contains(request.Keyword));
+              }*/
 
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)

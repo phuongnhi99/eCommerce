@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,5 +15,6 @@ namespace eCommerce.ViewModels.Catalog.Products
         public DateTime DateCreated { get; set; }
         public int SortOrder { get; set; }
         public long FileSize { get; set; }
+      
     }
 }
