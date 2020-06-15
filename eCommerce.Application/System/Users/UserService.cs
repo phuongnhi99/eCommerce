@@ -99,7 +99,7 @@ namespace eCommerce.Application.System.Users
             var query = _userManager.Users;
             if(!string.IsNullOrEmpty(request.Keyword))
             {
-                query = query.Where(x => x.UserName.Contains(request.Keyword) || x.PhoneNumber.Contains(request.Keyword));
+                query = query.Where(x => x.UserName.Contains(request.Keyword) || x.FirstName.Contains(request.Keyword) || x.LastName.Contains(request.Keyword) || x.Email.Contains(request.Keyword) || x.PhoneNumber.Contains(request.Keyword));
             }
 
             int totalRow = await query.CountAsync();
@@ -117,7 +117,9 @@ namespace eCommerce.Application.System.Users
 
             var pagedResult = new PagedResult<UserVm>()
             {
-                TotalRecord = totalRow,
+                TotalRecords = totalRow,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
                 Items = data
             };
             return new ApiSuccessResult<PagedResult<UserVm>>(pagedResult);
