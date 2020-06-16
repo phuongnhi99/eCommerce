@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using eCommerce.Application.Catalog.Products;
 using eCommerce.Application.Common;
+using eCommerce.Application.System.Roles;
 using eCommerce.Application.System.Users;
 using eCommerce.Data.EF;
 using eCommerce.Data.Entities;
@@ -51,6 +52,7 @@ namespace eCommerce.BackendApi
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoleSevice, RoleService>();
 
             //services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
             //services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
