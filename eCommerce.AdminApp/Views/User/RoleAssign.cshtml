@@ -1,0 +1,43 @@
+﻿@model eCommerce.ViewModels.System.Users.RoleAssignRequest
+
+@{
+    ViewData["Title"] = "RoleAssign";
+}
+
+@{
+    ViewData["Title"] = "Gán quyền";
+}
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-2 text-gray-800">Gán quyền</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="card shadow mb-4 col-lg-8">
+            <div class="card-body">
+                <h5 class="text-danger mb-4">Bạn chắc chắc muốn gán quyền quản trị cho tài khoản này?</h5>
+                <form asp-action="RoleAssign">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    @for (var i = 0; i < Model.Roles.Count; i++)
+                    {
+                        <div class="form-group row justify-content-center">
+                            <label>
+                                <input type="checkbox" asp-for="Roles[i].Selected" />
+                                @Model.Roles[i].Name
+                                <input type="hidden" asp-for="Roles[i].Id" />
+                                <input type="hidden" asp-for="Roles[i].Name" />
+                            </label>
+                        </div>
+                    }
+                    <div class="row justify-content-between">
+                        <a asp-action="Index" asp-controller="User" class="btn btn-info small">Về danh sách</a>
+                        <button type="submit" class="btn btn-info">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

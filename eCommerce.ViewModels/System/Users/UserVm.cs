@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eCommerce.ViewModels.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -23,5 +24,7 @@ namespace eCommerce.ViewModels.System.Users
 
         [Display(Name = "Số điện thoại")]
         public string PhoneNumber { get; set; }
+
+        public IList<string> Roles { get; set; }
     }
 }
