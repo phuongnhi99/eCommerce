@@ -4,31 +4,32 @@
     ViewData["Title"] = "Xóa nhân viên";
 }
 
-    <div class="container-fluid">
-        <!-- Page Heading -->
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-2 text-gray-800">Cập nhật thông tin</h1>
-        </div>
-        <div class="row justify-content-center">
-            <div class="card shadow mb-4 col-lg-8">
-                <div class="card-body">
-                    <h4 class="text-danger mb-4">Bạn chắc chắc muốn xóa tài khoản này?</h4>
-                    <dl class="row mb-4">
-                        <dt class="col-sm-4">
-                            @Html.DisplayNameFor(model => model.Id):
-                        </dt>
-                        <dd class="col-sm-8">
-                            @Html.DisplayFor(model => model.Id)
-                        </dd>
-                    </dl>
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-2 text-gray-800">Cập nhật thông tin</h1>
+    </div>
+    <div class="row justify-content-center">
+        <div class="card shadow mb-4 col-lg-8">
+            <div class="card-body">
+                <h5 class="text-danger mb-4">Bạn chắc chắc muốn xóa tài khoản này?</h5>
+                <dl class="row mb-4">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Id):
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Id)
+                    </dd>
+                </dl>
 
-                    <form asp-action="Delete">
-                        <input asp-for="Id" type="hidden" />
-                        <div class="row justify-content-between">
-                            <a asp-action="Employee" asp-controller="User" class="btn btn-info small">Về danh sách</a>
-                            <button type="submit" class="btn btn-info">Xóa</button>
-                        </div>
-                    </form>
-                </div>
+                <form asp-action="Delete">
+                    <input asp-for="Id" type="hidden" />
+                    <div class="row justify-content-between">
+                        <a asp-action="Index" asp-controller="User" class="btn btn-info small">Về danh sách</a>
+                        <button type="submit" class="btn btn-info">Xóa</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+</div>
