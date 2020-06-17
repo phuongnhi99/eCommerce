@@ -21,21 +21,24 @@ namespace eCommerce.Application.System.Users
 {
     public class UserService : IUserService
     {
+        private readonly ECommerceDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<AppRole> _roleManager;
         //private readonly IdentityUserRole<> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly RoleManager<AppRole> _roleManager;
         private readonly IConfiguration _config;
-        public UserService(UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager,
-            IConfiguration config)
+
+
+        public UserService( ECommerceDbContext context,
+                            UserManager<AppUser> userManager,
+                            SignInManager<AppUser> signInManager,
+                            RoleManager<AppRole> roleManager,
+                            IConfiguration config)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _config = config;
-            _roleManager = roleManager;
             _context = context;
         }
 
@@ -96,7 +99,7 @@ namespace eCommerce.Application.System.Users
                 LastName = user.LastName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                Roles = roles
+                //Roles = roles
             };
             return new ApiSuccessResult<UserVm>(userVm);
         }

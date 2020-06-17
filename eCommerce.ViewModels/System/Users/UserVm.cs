@@ -24,5 +24,6 @@ namespace eCommerce.ViewModels.System.Users
 
         [Display(Name = "Số điện thoại")]
         public string PhoneNumber { get; set; }
+        public IList<string> Roles { get; set; }
     }
 }
