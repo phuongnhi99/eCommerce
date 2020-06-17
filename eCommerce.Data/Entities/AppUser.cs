@@ -7,6 +7,7 @@ namespace eCommerce.Data.Entities
 {
     public class AppUser : IdentityUser<Guid>
     {
+        
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime Dob { get; set; }
@@ -14,6 +15,5 @@ namespace eCommerce.Data.Entities
         public List<Cart> Carts { get; set; }
         public List<Order> Orders { get; set; }
         public List<Transaction> Transactions { get; set; }
-        //public List<UserRole> UserRoles { get; set; }
     }
 }

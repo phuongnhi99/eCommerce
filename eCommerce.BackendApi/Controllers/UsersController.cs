@@ -74,6 +74,14 @@ namespace eCommerce.BackendApi.Controllers
             return Ok(products);
         }
 
+        //http://localhost/api/users/paging?pageIndex=1&pageSize=10&keyword=
+        [HttpGet]
+        public async Task<IActionResult> GetAllRolePaging([FromQuery] GetRolePagingRequest request)
+        {
+            var roles = await _userService.GetRolesPaging(request);
+            return Ok(roles);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {

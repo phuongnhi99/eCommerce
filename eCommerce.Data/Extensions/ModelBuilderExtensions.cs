@@ -135,6 +135,10 @@ namespace eCommerce.Data.Extensions
                 new ProductInCategory() { ProductId = 1, CategoryId = 1 }
             );
 
+            modelBuilder.Entity<ProductInCategory>().HasData(
+                new ProductInCategory() { ProductId = 3, CategoryId = 2 }
+            );
+
 
             var roleId = new Guid("8D04DCE2-969A-435D-BBA4-DF3F325983DC");
             var adminId = new Guid("69BD714F-9576-45BA-B5B7-F00649BE00DE");

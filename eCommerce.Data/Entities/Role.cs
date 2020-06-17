@@ -5,12 +5,10 @@ using System.Text;
 
 namespace eCommerce.Data.Entities
 {
-    public class AppRole : IdentityRole<Guid>
-    {
-      
+    public class Role 
+    { 
         public string Description { get; set; }
 
-        //public List<IdentityUserRole<Guid>> UserRoles { get; set; }
-        //public List<UserRole> UserRoles { get; set; }
+
     }
 }

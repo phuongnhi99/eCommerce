@@ -10,18 +10,18 @@ using Microsoft.Extensions.Configuration;
 
 namespace eCommerce.AdminApp.Controllers
 {
-    public class ProductController : Controller
+    public class CategoryController : Controller
     {
         private readonly IProductApiClient _productApiClient;
         private readonly IConfiguration _configuration;
 
-        public ProductController(IProductApiClient productApiClient, IConfiguration configuration)
+        public CategoryController(IProductApiClient productApiClient, IConfiguration configuration)
         {
             _productApiClient = productApiClient;
             _configuration = configuration;
         }
 
-        public async Task<IActionResult> Product(List<int> categoryId , int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Category(List<int> categoryId, int pageIndex = 1, int pageSize = 10)
         {
             var list = new List<int>() { 1 };
             var sessions = HttpContext.Session.GetString("Token");
@@ -34,25 +34,6 @@ namespace eCommerce.AdminApp.Controllers
             };
             var data = await _productApiClient.GetAllPaging(request);
             return View(data);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(ProductCreateRequest request)
-        {
-            if (!ModelState.IsValid)
-                return View();
-
-            var result = await _productApiClient.CreateProduct(request);
-            if (result.IsSuccessed)
-                return RedirectToAction("Product");
-            ModelState.AddModelError("", result.Message);
-            return View();
-        }
-
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
         }
     }
 }

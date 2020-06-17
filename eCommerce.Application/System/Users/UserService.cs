@@ -2,6 +2,7 @@
 using eCommerce.Data.Entities;
 using eCommerce.ViewModels.Common;
 using eCommerce.ViewModels.System.Users;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,22 +15,30 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 namespace eCommerce.Application.System.Users
 {
     public class UserService : IUserService
     {
         private readonly ECommerceDbContext _context;
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
+        //private readonly IdentityUserRole<> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IConfiguration _config;
 
         public UserService(UserManager<AppUser> userManager,
             SignInManager<AppUser> signInManager,
-            IConfiguration config)
+            IConfiguration config,
+            RoleManager<AppRole> roleManager,
+            ECommerceDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _config = config;
+            _roleManager = roleManager;
+            _context = context;
         }
 
         public async Task<ApiResult<string>> Authencate(LoginRequest request)
@@ -96,28 +105,50 @@ namespace eCommerce.Application.System.Users
             return new ApiSuccessResult<UserVm>(userVm);
         }
 
-
-
         public async Task<ApiResult<PagedResult<UserVm>>> GetUsersPaging(GetUserPagingRequest request)
             {
-                var query = _userManager.Users;
-            //if(string.IsNullOrEmpty(request.Keyword))
-            //{
-            //    query = query.Where(x => x.UserName.Contains(request.Keyword) || x.PhoneNumber.Contains(request.Keyword));
-            //}
+            var query = _userManager.Users;
+            /*  var query = from a in _context.AppUserRoles
+                          join b in _userManager.Users on a.UserId equals b.Id
+                          join c in _roleManager.Roles on a.RoleId equals c.Id
+                          select new { a, b, c }; ;*/
+
+
+            /* var query = from a in _context.AppRoles
+                         join b in _userManager.Users on a.Id equals b.Id
+                         select new { b.Id, b.UserName,b.FirstName,b.LastName,b.Email,b.PhoneNumber};*/
+
+            /*     var query =  from c in _context.AppUsers
+                             //join d in _context.AppUserRoles on c.Id equals d.UserId
+                             select new {c.Id, c.UserName,c.FirstName,c.LastName,c.Email,c.PhoneNumber};*/
+
+            if (!string.IsNullOrEmpty(request.Keyword))
+            {
+                query = query.Where(x => x.UserName.Contains(request.Keyword) || x.PhoneNumber.Contains(request.Keyword));
+            }
 
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
-                .Select(x => new UserVm()
-                {
-                    Id = x.Id,
-                    UserName = x.UserName,
-                    FirstName = x.FirstName,
-                    LastName = x.LastName,
-                    Email = x.Email,
-                    PhoneNumber = x.PhoneNumber
-                }).ToListAsync();
+              .Select(x => new UserVm()
+              {
+                  Id = x.Id,
+                  UserName = x.UserName,
+                  FirstName = x.FirstName,
+                  LastName = x.UserName,
+                  Email = x.Email,
+                  PhoneNumber = x.PhoneNumber
+              }).ToListAsync();
+            /*  {
+                  Id = x.b.Id,
+                  UserName = x.b.UserName,
+                  FirstName = x.b.FirstName,
+                  LastName = x.b.UserName,
+                  Email = x.b.Email,
+                  PhoneNumber = x.b.PhoneNumber
+              }).ToListAsync();*/
+
+
 
             var pagedResult = new PagedResult<UserVm>()
             {
@@ -128,6 +159,39 @@ namespace eCommerce.Application.System.Users
             };
             return new ApiSuccessResult<PagedResult<UserVm>>(pagedResult);
         }
+
+
+        public async Task<ApiResult<PagedResult<UserRoleVm>>>GetRolesPaging(GetRolePagingRequest request)
+        {
+            var query = from a in _context.AppUserRoles
+                        join b in _userManager.Users on a.UserId equals b.Id
+                        join c in _roleManager.Roles on a.RoleId equals c.Id
+                        select new { a,b,c};
+
+            int totalRow = await query.CountAsync();
+            var data = await query
+                .Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+              .Select(x => new UserRoleVm()
+              {
+                  Id = x.c.Id,
+                  Name = x.c.Name,
+                  Description = x.c.Description
+
+              }).ToListAsync();
+
+
+
+            var pagedResult = new PagedResult<UserRoleVm>()
+            {
+                TotalRecords = totalRow,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
+                Items = data
+            };
+            return new ApiSuccessResult<PagedResult<UserRoleVm>>(pagedResult);
+        }
+
 
         public async Task<ApiResult<bool>> Register(RegisterRequest request)
         {

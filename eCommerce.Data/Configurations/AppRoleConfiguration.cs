@@ -15,6 +15,7 @@ namespace eCommerce.Data.Configurations
 
             builder.Property(x => x.Description).HasMaxLength(200).IsRequired();
 
+
         }
     }
 }

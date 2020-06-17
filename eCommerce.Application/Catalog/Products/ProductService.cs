@@ -37,6 +37,7 @@ namespace eCommerce.Application.Catalog.Products
             await _context.SaveChangesAsync();
         }
 
+        
         public async Task<int> Create(ProductCreateRequest request)
         {
             var product = new Product()
@@ -52,12 +53,18 @@ namespace eCommerce.Application.Catalog.Products
                     {
                         Name = request.Name,
                         Description = request.Description,
-                        Details = request.Details,
-                        SeoDescription = request.SeoDescription,
-                        SeoAlias = request.SeoAlias,
-                        SeoTitle = request.SeoTitle,
-                        LanguageId = request.LanguageId
+                        //Details = request.Details,
+                        //SeoDescription = request.SeoDescription,
+                        SeoAlias = "namidori",
+                        SeoTitle =  "namidori",
+                        LanguageId = "vi-VN"
                     }
+                },
+                ProductInCategories = new List<ProductInCategory>()
+                {
+                     new ProductInCategory(){
+                     CategoryId = 1
+        }
                 }
             };
 
@@ -106,10 +113,10 @@ namespace eCommerce.Application.Catalog.Products
          /*   if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.pt.Name.Contains(request.Keyword));
 */
-            if (request.CategoryIds.Count > 0)
+          /*  if (request.CategoryIds.Count > 0)
             {
                 query = query.Where(p => request.CategoryIds.Contains(p.pic.CategoryId));
-            }
+            }*/
 
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
@@ -139,10 +146,10 @@ namespace eCommerce.Application.Catalog.Products
             return pagedResult;
         }
 
-        public async Task<ProductViewModel> GetById(int productId, string languageId)
+        public async Task<ProductViewModel> GetById(int productId/*, string languageId*/)
         {
             var product = await _context.Products.FindAsync(productId);
-            var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId && x.LanguageId == languageId);
+            var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId /*&& x.LanguageId == languageId*/);
 
 
             var productViewModel = new ProductViewModel()
@@ -150,7 +157,7 @@ namespace eCommerce.Application.Catalog.Products
                 Id = product.Id,
                 DateCreated = product.DateCreated,
                 Description = productTranslation != null ? productTranslation.Description : null,
-                LanguageId = productTranslation.LanguageId,
+                //LanguageId = productTranslation.LanguageId,
                 Details = productTranslation != null ? productTranslation.Details : null,
                 Name = productTranslation != null ? productTranslation.Name : null,
                 OriginalPrice = product.OriginalPrice,

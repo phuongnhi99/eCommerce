@@ -14,7 +14,7 @@ namespace eCommerce.Application.Catalog.Products
         //Product
         Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
         Task<PagedResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
-        Task<ProductViewModel> GetById(int productId, string languageId);
+        Task<ProductViewModel> GetById(int productId/*, string languageId*/);
         Task<int> Create(ProductCreateRequest request);
         Task<int> Update(ProductUpdateRequest request);
         Task<int> Delete(int productID);
