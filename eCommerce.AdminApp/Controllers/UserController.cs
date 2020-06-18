@@ -49,6 +49,23 @@ namespace eCommerce.AdminApp.Controllers
             return View(data.ResultObj);
         }
 
+        public async Task<IActionResult> Customer(string keyword, int pageIndex = 1, int pageSize = 10)
+        {
+            var request = new GetUserPagingRequest()
+            {
+                Keyword = keyword,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            };
+            var data = await _userApiClient.GetCustomersPagings(request);
+            ViewBag.Keyword = keyword;
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMsg = TempData["result"];
+            }
+            return View(data.ResultObj);
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -174,7 +191,7 @@ namespace eCommerce.AdminApp.Controllers
                 {
                     Id = role.Id.ToString(),
                     Name = role.Name,
-                    Selected = userObj.ResultObj.Roles.Contains(role.Name)
+                    //Selected = userObj.ResultObj.Roles.Contains(role.Name)
                 });
             }
             return roleAssignRequest;

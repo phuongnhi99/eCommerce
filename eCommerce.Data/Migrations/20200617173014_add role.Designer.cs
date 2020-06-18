@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eCommerce.Data.EF;
 
 namespace eCommerce.Data.Migrations
 {
     [DbContext(typeof(ECommerceDbContext))]
-    partial class ECommerceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200617173014_add role")]
+    partial class addrole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,56 +100,6 @@ namespace eCommerce.Data.Migrations
                         {
                             UserId = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        },
-                        new
-                        {
-                            UserId = new Guid("5dfd7db6-11d3-43dd-da0f-08d811b6ed1f"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        },
-                        new
-                        {
-                            UserId = new Guid("3185e3e5-b1ee-4205-02a4-08d8127567cd"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        },
-                        new
-                        {
-                            UserId = new Guid("2892904e-4bb4-4ab0-b16f-08d812c371e3"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        },
-                        new
-                        {
-                            UserId = new Guid("a21f1ce7-f421-46d4-b170-08d812c371e3"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        },
-                        new
-                        {
-                            UserId = new Guid("ee2febef-2b6f-4860-b171-08d812c371e3"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        },
-                        new
-                        {
-                            UserId = new Guid("8f6e6938-2c2b-4075-b172-08d812c371e3"),
-                            RoleId = new Guid("98d30750-ffe1-4d9c-9dfe-05f0c5d64a0f")
-                        },
-                        new
-                        {
-                            UserId = new Guid("c96c4420-5398-438d-b173-08d812c371e3"),
-                            RoleId = new Guid("98d30750-ffe1-4d9c-9dfe-05f0c5d64a0f")
-                        },
-                        new
-                        {
-                            UserId = new Guid("4c3f8de1-ae9b-4499-b174-08d812c371e3"),
-                            RoleId = new Guid("98d30750-ffe1-4d9c-9dfe-05f0c5d64a0f")
-                        },
-                        new
-                        {
-                            UserId = new Guid("431c8ea6-d8ef-45d6-b175-08d812c371e3"),
-                            RoleId = new Guid("98d30750-ffe1-4d9c-9dfe-05f0c5d64a0f")
-                        },
-                        new
-                        {
-                            UserId = new Guid("d2ac625b-fa25-4c71-b176-08d812c371e3"),
-                            RoleId = new Guid("98d30750-ffe1-4d9c-9dfe-05f0c5d64a0f")
                         });
                 });
 
@@ -230,7 +182,7 @@ namespace eCommerce.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "2cae208d-b5cb-4a33-a2cf-3b6411fed08f",
+                            ConcurrencyStamp = "6072e616-a21e-4fe2-96cc-df970e09dfa5",
                             Description = "Employee role",
                             Name = "employee",
                             NormalizedName = "employee"
@@ -238,7 +190,7 @@ namespace eCommerce.Data.Migrations
                         new
                         {
                             Id = new Guid("98d30750-ffe1-4d9c-9dfe-05f0c5d64a0f"),
-                            ConcurrencyStamp = "b66151b1-f658-48df-9db3-70ab55c28834",
+                            ConcurrencyStamp = "4ff25895-003d-49f7-81a5-b564954ae1de",
                             Description = "Customer role",
                             Name = "customer",
                             NormalizedName = "customer"
@@ -315,7 +267,7 @@ namespace eCommerce.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "50297337-4986-4e1d-b26e-92921027cf1d",
+                            ConcurrencyStamp = "ea1552da-42b1-4717-aca0-2586f1a28185",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
@@ -324,7 +276,7 @@ namespace eCommerce.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBblsDsWxLb9CZWqPaf0qpc3Agy60l+uE4PHUfbhBGR/i6IwVMbvhoVBchPEpNqZnw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELwH+FDnuZdcY3rbijQQI2Ysi8/WEMYuDS6L+D/KVofU6W8t2FZoaHDB4RdJ99Oc3w==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -672,7 +624,7 @@ namespace eCommerce.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2020, 6, 18, 0, 39, 35, 59, DateTimeKind.Local).AddTicks(7862),
+                            DateCreated = new DateTime(2020, 6, 18, 0, 30, 14, 95, DateTimeKind.Local).AddTicks(5206),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,

@@ -10,7 +10,7 @@ namespace eCommerce.BackendApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -71,6 +71,14 @@ namespace eCommerce.BackendApi.Controllers
         public async Task<IActionResult> GetAllPaging([FromQuery] GetUserPagingRequest request)
         {
             var products = await _userService.GetUsersPaging(request);
+            return Ok(products);
+        }
+
+        //http://localhost/api/users/customer?pageIndex=1&pageSize=10&keyword=
+        [HttpGet("customer")]
+        public async Task<IActionResult> GetAllCustomerPaging([FromQuery] GetUserPagingRequest request)
+        {
+            var products = await _userService.GetCustomersPaging(request);
             return Ok(products);
         }
 

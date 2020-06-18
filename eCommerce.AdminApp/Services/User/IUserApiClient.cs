@@ -11,6 +11,7 @@ namespace eCommerce.AdminApp.Services
     {
         Task<ApiResult<string>> Authenticate(LoginRequest request);
         Task<ApiResult<PagedResult<UserVm>>> GetUsersPagings(GetUserPagingRequest request);
+        Task<ApiResult<PagedResult<UserVm>>> GetCustomersPagings(GetUserPagingRequest request);
         Task<ApiResult<bool>> RegisterUser(RegisterRequest registerRequest);
         Task<ApiResult<bool>> UpdateUser(Guid id, UserUpdateRequest request);
         Task<ApiResult<UserVm>> GetById(Guid id);
