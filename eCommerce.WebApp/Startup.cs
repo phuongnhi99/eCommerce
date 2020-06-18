@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace eCommerce.WebApp
 {
@@ -28,14 +29,24 @@ namespace eCommerce.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
-                options.LoginPath = "/User/Login/";
+                options.LoginPath = "/Login/Index/";
                 options.AccessDeniedPath = "/User/Forbidden/";
             });
             services.AddControllersWithViews()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IUserApiClient, UserApiClient>();
+            //services.AddTransient<IProductApiClient, ProductApiClient>();
+            services.AddTransient<IRoleApiClient, RoleApiClient>();
 
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -66,6 +77,7 @@ namespace eCommerce.WebApp
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -73,5 +85,6 @@ namespace eCommerce.WebApp
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
     }
 }
