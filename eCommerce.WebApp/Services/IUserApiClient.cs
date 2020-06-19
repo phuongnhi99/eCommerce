@@ -11,7 +11,7 @@ namespace eCommerce.WebApp.Services
     {
         Task<ApiResult<string>> Authenticate(LoginRequest request);
         Task<ApiResult<PagedResult<UserVm>>> GetUsersPagings(GetUserPagingRequest request);
-        Task<ApiResult<bool>> RegisterUser(RegisterRequest registerRequest);
+        Task<ApiResult<bool>> RegisterCustomer(RegisterRequest registerRequest);
         Task<ApiResult<UserVm>> GetById(Guid id);
     }
 }

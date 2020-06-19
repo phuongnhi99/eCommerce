@@ -52,6 +52,22 @@ namespace eCommerce.BackendApi.Controllers
             return Ok(result);
         }
 
+        [HttpPost("customer")]
+        [AllowAnonymous]
+        public async Task<IActionResult> UserRegister([FromBody] RegisterRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _userService.UserRegister(request);
+
+            if (!result.IsSuccessed)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
         //PUT: http://localhost/api/users/id
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, [FromBody]UserUpdateRequest request)

@@ -69,7 +69,7 @@ namespace eCommerce.WebApp.Services
             return users;
         }
 
-        public async Task<ApiResult<bool>> RegisterUser(RegisterRequest registerRequest)
+        public async Task<ApiResult<bool>> RegisterCustomer(RegisterRequest registerRequest)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
@@ -77,7 +77,7 @@ namespace eCommerce.WebApp.Services
             var json = JsonConvert.SerializeObject(registerRequest);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync($"/api/users/", httpContent);
+            var response = await client.PostAsync($"/api/users/customer/", httpContent);
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);

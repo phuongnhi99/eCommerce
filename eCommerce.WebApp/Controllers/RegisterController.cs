@@ -33,7 +33,7 @@ namespace eCommerce.WebApp.Controllers
         {
             if (!ModelState.IsValid)
                 return View();
-            var result = await _userApiClient.RegisterUser(request);
+            var result = await _userApiClient.RegisterCustomer(request);
             if (result.IsSuccessed)
                 return RedirectToAction("Index", "Login");
             ModelState.AddModelError("", result.Message);

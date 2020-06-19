@@ -14,7 +14,7 @@ using eCommerce.WebApp.Services;
 namespace eCommerce.WebApp.Controllers
 {
     //[Authorize]
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         private readonly IProductApiClient _productApiClient;
         private readonly IConfiguration _configuration;

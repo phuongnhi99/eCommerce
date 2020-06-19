@@ -258,6 +258,44 @@ namespace eCommerce.Application.System.Users
             return new ApiErrorResult<bool>("Đăng ký không thành công");
         }
 
+        public async Task<ApiResult<bool>> UserRegister(RegisterRequest request)
+        {
+            var user = await _userManager.FindByNameAsync(request.UserName);
+            if (user != null)
+            {
+                return new ApiErrorResult<bool>("Tên người dùng đã tồn tại");
+            }
+            if (await _userManager.FindByEmailAsync(request.Email) != null)
+            {
+                return new ApiErrorResult<bool>("Email đã tồn tại");
+            }
+
+            user = new AppUser()
+            {
+                UserName = request.UserName,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email,
+                PhoneNumber = request.PhoneNumber
+                /*AppUserRoles = new List<AppUserRole>()
+                {
+                    new AppUserRole(){ RoleId = new Guid("8D04DCE2-969A-435D-BBA4-DF3F325983DC") }
+                }*/
+            };
+
+
+
+            var result = await _userManager.CreateAsync(user, request.Password);
+
+            if (result.Succeeded)
+            {
+                var users = await _userManager.FindByEmailAsync(request.Email.ToString());
+                await _userManager.AddToRoleAsync(users, "customer");
+                return new ApiSuccessResult<bool>();
+            }
+            return new ApiErrorResult<bool>("Đăng ký không thành công");
+        }
+
         public async Task<ApiResult<bool>> RoleAssign(Guid id, RoleAssignRequest request)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
