@@ -17,7 +17,7 @@ namespace eCommerce.WebApp.Controllers
             var sessions = context.HttpContext.Session.GetString("Token");
             if (sessions == null)
             {
-                context.Result = new RedirectToActionResult("Index", "Login", null);
+                context.Result = new RedirectToActionResult("Index", "Home", null);
             }
             base.OnActionExecuting(context);
         }

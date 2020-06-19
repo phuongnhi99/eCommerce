@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace eCommerce.WebApp.Controllers
 {
-    public class RegisterController : BaseController
+    public class RegisterController : Controller
     {
         private readonly IUserApiClient _userApiClient;
         //private readonly IConfiguration _configuration;
@@ -35,7 +35,7 @@ namespace eCommerce.WebApp.Controllers
                 return View();
             var result = await _userApiClient.RegisterUser(request);
             if (result.IsSuccessed)
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Login");
             ModelState.AddModelError("", result.Message);
             return View();
         }

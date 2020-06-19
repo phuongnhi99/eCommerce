@@ -1,40 +1,65 @@
 ﻿@using eCommerce.ViewModels.System.Users
-
+@model RegisterRequest
 @{
     ViewData["Title"] = "Đăng ký";
 }
 
-<section class="login_box_area c-section_gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="login_box_img">
-                    <img class="img-fluid" src="~/img/login2.jpg" alt="">
-                    <div class="hover">
-                        <h4>Bạn đã có tài khoản?</h4>
-                        <a class="primary-btn" asp-controller="Login" asp-action="Index">Đăng nhập</a>
+    <section class="login_box_area c-section_gap">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="card shadow mb-4 col-lg-12">
+                    <div class="card-body">
+                        <h2 class="row justify-content-center c-pt-50">ĐĂNG KÝ</h2>
+                        <div asp-validation-summary="ModelOnly" class="text-danger c-pt-20"></div>
+                        <form asp-action="Index" asp-controller="Register" method="post">
+                            <div class="row c-pt-20">
+                                <div class="form-group col-lg-4">
+                                    <label asp-for="UserName" class="control-label">Tên người dùng</label>
+                                    <input asp-for="UserName" class="form-control" />
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label asp-for="FirstName" class="control-label">Tên</label>
+                                    <input asp-for="FirstName" class="form-control" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label asp-for="LastName" class="control-label">Họ</label>
+                                    <input asp-for="LastName" class="form-control" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row c-pt-20">
+                                <div class="form-group col-lg-6">
+                                    <label asp-for="Email" class="control-label">Email</label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+                                    <input asp-for="PhoneNumber" class="form-control" />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="row c-pt-20">
+                                <div class="form-group col-lg-6">
+                                    <label asp-for="Password" class="control-label">Mật khẩu</label>
+                                    <input asp-for="Password" class="form-control" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label asp-for="ConfirmPassword" class="control-label">Nhập lại mật khẩu</label>
+                                    <input asp-for="ConfirmPassword" class="form-control" />
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center c-pt-50">
+                                <button type="submit" class="btn btn-warning">Đăng ký</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="login_form_inner c-pt-50">
-                    <h2>ĐĂNG KÝ</h2>
-                    <form asp-action="Index" asp-controller="Register" class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                        <div class="col-md-12 form-group c-pb-20">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Email">
-                        </div>
-                        <div class="col-md-12 form-group c-pb-20">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Mật khẩu">
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Nhập lại mật khẩu">
-                        </div>
-                        <div class="col-md-12 form-group c-pt-50">
-                            <button type="submit" value="submit" class="primary-btn">Đăng ký</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
