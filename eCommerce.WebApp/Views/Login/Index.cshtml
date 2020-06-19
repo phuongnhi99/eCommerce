@@ -6,33 +6,30 @@
 
 <section class="login_box_area c-section_gap">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="login_box_img">
-                    <img class="img-fluid" src="~/img/login2.jpg" alt="">
-                    <div class="hover">
-                        <h4>Bạn chưa có tài khoản?</h4>
-                        <a class="primary-btn" asp-controller="Register" asp-action="Index">Đăng ký</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="login_form_inner c-pt-50">
-                    <h2>ĐĂNG NHẬP</h2>
-                    <form class="row login_form" asp-controller="Login" asp-action="Index" method="post">
-                        <div class="col-md-12 form-group c-pb-20">
-                            <input asp-for="UserName" type="text" class="form-control form-control-user" placeholder="Tài khoản">
-                            <span asp-validation-for="UserName" class="text-danger"></span>
+        <div class="row justify-content-center">
+            <div class="card shadow mb-4 col-lg-6">
+                <div class="card-body">
+                    <h2 class="row justify-content-center c-pt-50">ĐĂNG NHẬP</h2>
+                    <div asp-validation-summary="All" class="text-danger c-pt-20"></div>
+                    <form asp-action="Index" asp-controller="Login" method="post">
+                        <div class="row c-pt-20">
+                            <div class="form-group col-lg-12">
+                                <label asp-for="UserName" class="control-label">Tên người dùng</label>
+                                <input asp-for="UserName" class="form-control" />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <label asp-for="Password" class="control-label">Mật khẩu</label>
+                                <input asp-for="Password" type="password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
                         </div>
-
-                        <div class="col-md-12 form-group">
-                            <input asp-for="Password" type="password" class="form-control form-control-user" placeholder="Mật khẩu">
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="row justify-content-center c-pt-50">
+                            <button type="submit" class="btn btn-warning">Đăng nhập</button>
                         </div>
-                        <div class="col-md-12 form-group c-pt-50">
-                            <button type="submit" class="primary-btn">Đăng nhập</button>
+                        <div class="row justify-content-center c-pt-20">
+                            <a asp-action="Index" asp-controller="Register">Bạn chưa có tài khoản?</a>
                         </div>
-                        <div asp-validation-summary="All" class="text-danger"></div>
                     </form>
                 </div>
             </div>

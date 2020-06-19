@@ -50,20 +50,20 @@
                     </button>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav navbar-right ml-auto">
-                            <li class="nav-item">
-                                <a asp-controller="Login" asp-action="Index">
-                                    <span class="ti-user"> @User.Identity.Name</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="cart" asp-controller="Cart" asp-action="Index">
-                                    <span class="ti-shopping-cart"></span>
-                                    <span>3</span>
-                                </a>
-                            </li>
+                        <ul class="nav navbar-nav navbar-right menu_nav ml-auto">
+                            <li class="nav-item"><a asp-action="Index" asp-controller="Cart" class="cart"><span class="ti-bag"></span></a></li>
                             <li class="nav-item">
                                 <button class="search"><span class="ti-search" id="search"></span></button>
+                            </li>
+                            
+                            <li class="nav-item submenu dropdown">
+                                <a asp-action="Index" asp-controller="Login" class="user"><span class="ti-user"></a>
+                                <a class="nav-link dropdown-toggle" href="javascript:;" id="navbar-primary_dropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> @User.Identity.Name</a>
+                                <form method="post" class="dropdown-menu dropdown-menu-right">
+                                    <div>
+                                        <button type="submit" asp-controller="Login" asp-action="Logout" class="dropdown-item">Đăng xuất</button>
+                                    </div>
+                                </form>
                             </li>
                         </ul>
                     </div>

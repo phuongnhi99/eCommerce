@@ -14,11 +14,11 @@ namespace eCommerce.WebApp.Controllers
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-           /* var sessions = context.HttpContext.Session.GetString("Token");
+            var sessions = context.HttpContext.Session.GetString("Token");
             if (sessions == null)
             {
-                context.Result = new RedirectToActionResult("Index", "Login", null);
-            }*/
+                context.Result = new RedirectToActionResult("Index", "Home", null);
+            }
             base.OnActionExecuting(context);
         }
     }

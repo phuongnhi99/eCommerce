@@ -14,7 +14,7 @@ using eCommerce.WebApp.Services;
 
 namespace eCommerce.WebApp.Controllers
 {
-    public class UserController : BaseController
+    public class UserController : Controller
     {
         private readonly IUserApiClient _userApiClient;
         private readonly IConfiguration _configuration;
@@ -44,30 +44,12 @@ namespace eCommerce.WebApp.Controllers
             return View(data.ResultObj);
         }
 
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(RegisterRequest request)
-        {
-            if (!ModelState.IsValid)
-                return View();
-            var result = await _userApiClient.RegisterUser(request);
-            if (result.IsSuccessed)
-                return RedirectToAction("Index");
-            ModelState.AddModelError("", result.Message);
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Remove("Token");
-            return RedirectToAction("Index", "Login");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
