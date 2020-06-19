@@ -45,7 +45,7 @@ namespace eCommerce.WebApp
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IUserApiClient, UserApiClient>();
-            //services.AddTransient<IProductApiClient, ProductApiClient>();
+            services.AddTransient<IProductApiClient, ProductApiClient>();
             services.AddTransient<IRoleApiClient, RoleApiClient>();
 
             IMvcBuilder builder = services.AddRazorPages();

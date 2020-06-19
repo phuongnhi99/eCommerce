@@ -161,6 +161,7 @@ namespace eCommerce.Data.Extensions
             });
 
             var hasher = new PasswordHasher<AppUser>();
+
             modelBuilder.Entity<AppUser>().HasData(new AppUser
             {
                 Id = adminId,

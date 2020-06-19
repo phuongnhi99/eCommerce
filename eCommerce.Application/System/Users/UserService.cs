@@ -239,10 +239,20 @@ namespace eCommerce.Application.System.Users
                 LastName = request.LastName,
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber
+                /*AppUserRoles = new List<AppUserRole>()
+                {
+                    new AppUserRole(){ RoleId = new Guid("8D04DCE2-969A-435D-BBA4-DF3F325983DC") }
+                }*/
             };
+
+
+
             var result = await _userManager.CreateAsync(user, request.Password);
+
             if (result.Succeeded)
             {
+                var users = await _userManager.FindByEmailAsync(request.Email.ToString());
+                await _userManager.AddToRoleAsync(users, "employee");
                 return new ApiSuccessResult<bool>();
             }
             return new ApiErrorResult<bool>("Đăng ký không thành công");

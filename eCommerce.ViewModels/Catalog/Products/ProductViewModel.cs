@@ -19,8 +19,8 @@ namespace eCommerce.ViewModels.Catalog.Products
         [Display(Name = "Tên sản phẩm")]
         public string Name { set; get; }
         [Display(Name = "Thông tin sản phẩm")]
-        public string Description { set; get; }
         public string Details { set; get; }
+        public string Description { set; get; }
         public string SeoDescription { set; get; }
         public string SeoTitle { set; get; }
         public string SeoAlias { get; set; }

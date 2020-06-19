@@ -24,7 +24,7 @@ namespace eCommerce.AdminApp.Controllers
         public async Task<IActionResult> Product(List<int> categoryId , int pageIndex = 1, int pageSize = 10)
         {
             var list = new List<int>() { 1 };
-            var sessions = HttpContext.Session.GetString("Token");
+           /// var sessions = HttpContext.Session.GetString("Token");
             var request = new GetManageProductPagingRequest()
             {
                 //BearerToken = sessions,
@@ -53,6 +53,48 @@ namespace eCommerce.AdminApp.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+        {
+            
+            var result = await _productApiClient.GetById(id);
+            if (result.IsSuccessed)
+            {
+                var product = result.ResultObj;
+                var updateRequest = new ProductUpdateRequest()
+               /* {
+                    Description = "Beo",
+                    Name = "Beo",
+                    Price = 40000,
+                    OriginalPrice = 20000,
+                    Stock = 100,
+                    Id = 1
+                };*/
+                {
+                    Description = product.Description,
+                     Name = product.Name,
+                     Price = product.Price,
+                     OriginalPrice = product.OriginalPrice,
+                     Stock = product.Stock,
+                     Id = id
+                 };
+                return View(updateRequest);
+            }
+            return RedirectToAction("Error", "Home");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(ProductUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            var result = await _productApiClient.UpdateProduct(request.Id, request);
+            if (result.IsSuccessed)
+                return RedirectToAction("Index");
+            ModelState.AddModelError("", result.Message);
+            return View(request);
         }
     }
 }

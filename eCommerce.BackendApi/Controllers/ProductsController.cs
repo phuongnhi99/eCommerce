@@ -25,15 +25,16 @@ namespace eCommerce.BackendApi.Controllers
             return Ok(products);
         }
 
-        //http://localhost:port/product/1
-        [HttpGet("{productId}/{languageId}")]
-        public async Task<IActionResult> GetById(int productId/*, string languageId*/)
+        //http://localhost:port/products/1
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id/*, string languageId*/)
         {
-            var product = await _productService.GetById(productId/*, languageId*/);
+            var product = await _productService.GetById(id/*, languageId*/);
             if (product == null)
                 return BadRequest("Cannot find product");
             return Ok(product);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]ProductCreateRequest request)

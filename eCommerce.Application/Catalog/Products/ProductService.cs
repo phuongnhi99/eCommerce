@@ -84,6 +84,8 @@ namespace eCommerce.Application.Catalog.Products
                     }
                 };
             }
+
+
             _context.Products.Add(product);
              await _context.SaveChangesAsync();
             return product.Id;
@@ -146,10 +148,10 @@ namespace eCommerce.Application.Catalog.Products
             return pagedResult;
         }
 
-        public async Task<ProductViewModel> GetById(int productId/*, string languageId*/)
+        public async Task<ProductViewModel> GetById(int id/*, string languageId*/)
         {
-            var product = await _context.Products.FindAsync(productId);
-            var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId /*&& x.LanguageId == languageId*/);
+            var product = await _context.Products.FindAsync(id);
+            var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == id /*&& x.LanguageId == languageId*/);
 
 
             var productViewModel = new ProductViewModel()
@@ -175,14 +177,14 @@ namespace eCommerce.Application.Catalog.Products
         public async Task<int> Update(ProductUpdateRequest request)
         {
             var product = await _context.Products.FindAsync(request.Id);
-            var productTranlations = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id && x.LanguageId == request.LanguageId);
+            var productTranlations = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == request.Id /*&& x.LanguageId == request.LanguageId*/);
             if (product == null || productTranlations == null) throw new ECommerceException($"Can not find a product: {request.Id}");
             productTranlations.Name = request.Name;
-            productTranlations.SeoAlias = request.SeoAlias;
+            /*productTranlations.SeoAlias = request.SeoAlias;
             productTranlations.SeoDescription = request.SeoDescription;
-            productTranlations.SeoTitle = request.SeoTitle;
+            productTranlations.SeoTitle = request.SeoTitle;*/
             productTranlations.Description = request.Description;
-            productTranlations.Details = request.Details;
+            /*productTranlations.Details = request.Details;*/
             //Save Image
             if (request.ThumbnailImage != null)
             { 

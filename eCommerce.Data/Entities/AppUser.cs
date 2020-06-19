@@ -15,5 +15,6 @@ namespace eCommerce.Data.Entities
         public List<Cart> Carts { get; set; }
         public List<Order> Orders { get; set; }
         public List<Transaction> Transactions { get; set; }
+        //public List<AppUserRole> AppUserRoles { get; set; }
     }
 }
