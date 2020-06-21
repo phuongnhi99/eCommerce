@@ -18,7 +18,8 @@ namespace eCommerce.Application.Catalog.Products
         Task<int> Create(ProductCreateRequest request);
         Task<int> Update(ProductUpdateRequest request);
         Task<int> Delete(int productID);
-       //Update
+       
+        //Update
         Task<bool> UpdatePrice(int productId, decimal newPrice);
         Task<bool> UpdateStock(int productId, int addedQuantity);
         

@@ -32,48 +32,40 @@
         <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a asp-controller="Home" asp-action="Index" class="sidebar-brand d-flex align-items-center justify-content-center">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Store</div>
+            <a asp-controller="User" asp-action="Index" class="sidebar-brand d-flex align-items-center justify-content-center">
+               
+                <div class="sidebar-brand-text mx-3">NAMIDORI STORE</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item active">
-                <a class="nav-link" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>Trang chủ</span>
-                </a>
-            </li>
-            <hr class="sidebar-divider my-0">
+           
 
             <li class="nav-item active">
                 <a class="nav-link" asp-controller="User" asp-action="Index">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Người dùng</span>
+                    <span>Nhân viên</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" asp-controller="User" asp-action="Customer">
                     <i class="fas fa-user-tag"></i>
                     <span>Khách hàng</span>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" asp-controller="Product" asp-action="Product">
                     <i class="fas fa-box-open"></i>
                     <span>Sản phẩm</span>
                 </a>
             </li>
-            <li class="nav-item">
+            @*<li class="nav-item">
                 <a class="nav-link" asp-controller="Category" asp-action="Category">
                     <i class="fas fa-info-circle"></i>
                     <span>Loại sản phẩm</span>
                 </a>
-            </li>
+            </li>*@
             <hr class="sidebar-divider my-0">
         </ul>
         <!-- End of Sidebar -->
@@ -126,7 +118,7 @@
 
     </div>
     <!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
+    <!-- Scroll to Top Button-->s
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>

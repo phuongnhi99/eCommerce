@@ -15,16 +15,15 @@
                     <div class="row single-slide align-items-center d-flex">
                         <div class="col-lg-5 col-md-6">
                             <div class="banner-content">
-                                <h1>Nike New <br>Collection!</h1>
+                                <h1>Namidori New <br>Collection!</h1>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                                   Kiểu dáng hiện đại.
                                 </p>
                             </div>
                         </div>
                         <div class="col-lg-7">
                             <div class="banner-img">
-                                <img class="img-fluid" src="img/banner/banner-img.png" alt="">
+                                <img class="img-fluid" src="img/banner/banner-item2.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -32,16 +31,15 @@
                     <div class="row single-slide">
                         <div class="col-lg-5">
                             <div class="banner-content">
-                                <h1>Nike New <br>Collection!</h1>
+                                <h1>Namidori New <br>Collection!</h1>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+                                    Kiểu dáng hiện đại.
                                 </p>
                             </div>
                         </div>
                         <div class="col-lg-7">
                             <div class="banner-img">
-                                <img class="img-fluid" src="img/banner/banner-img.png" alt="">
+                                <img class="img-fluid" src="img/banner/banner-item2.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -57,25 +55,33 @@
     <div class="single-product-slider">
         <div class="container">
             <div class="row">
+                @if (Model.Items.Count == 0)
+                {
+                    <div class="col-md-12">
+                      Không tìm thấy sản phẩm!!!
+                    </div>
+
+                }
 
                 @foreach (var item in Model.Items)
-                { 
+                {
                     <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="img/product/p1.jpg" alt="">
-                        <div class="product-details">
-                            <a asp-controller="Detail" asp-action="Index">
-                                <h6 class="hover-text">
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </h6>
-                            </a>
-                            <div class="price">
-                                <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="img/product/shoe.jpg" alt="">
+                            <div class="product-details">
+                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
+                                    <h6 class="hover-text">
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                       @* @Html.ActionLink($"{item.Name}", "Detail", new { id = item.Id })*@
+                                    </h6>
+                                </a>
+                                <div class="price">
+                                    <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
                 }
 
@@ -85,7 +91,7 @@
     </div>
 </section>
 <!-- end product Area -->
-<div class="pagination justify-content-center mb-1">
+@*<div class="pagination justify-content-center mb-1">
     <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
     <a href="#" class="active">1</a>
     <a href="#">2</a>
@@ -93,4 +99,4 @@
     <a href="#">4</a>
     <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
     <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-</div>
+</div>*@

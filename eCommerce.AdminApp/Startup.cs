@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using eCommerce.AdminApp.Services;
 using eCommerce.AdminApp.Services.Role;
+using eCommerce.ViewModels.Catalog.Products;
 using eCommerce.ViewModels.System.Users;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -50,6 +51,11 @@ namespace eCommerce.AdminApp
             services.AddTransient<IProductApiClient, ProductApiClient>();
             services.AddTransient<IRoleApiClient, RoleApiClient>();
 
+            services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
+            services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
+            services.AddTransient<IValidator<ProductCreateRequest>, CreateRequestValidator>();
+
+
             IMvcBuilder builder = services.AddRazorPages();
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
@@ -84,7 +90,7 @@ namespace eCommerce.AdminApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=User}/{action=Index}/{id?}");
             });
         }
     }

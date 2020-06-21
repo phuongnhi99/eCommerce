@@ -1,0 +1,54 @@
+﻿@model eCommerce.ViewModels.Catalog.Products.ProductViewModel
+
+@{
+    ViewData["Title"] = "Chi tiết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="c-product_image_area">
+        <div class="container">
+            <div class="row s_product_inner">
+                <div class="col-lg-6">
+                    <div class="s_Product_carousel">
+                        <div class="single-prd-item">
+                            <img class="img-fluid" src="~/img/product/shoe.jpg" alt="">
+                        </div>
+                        <div class="single-prd-item">
+                            <img class="img-fluid"  src="~/img/product/shoe.jpg" alt="">
+                        </div>
+                        <div class="single-prd-item">
+                            <img class="img-fluid" src="~/img/product/shoe.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="s_product_text">
+                        <h3>@Model.Name</h3>
+                        <h2>@Model.Price đ</h2>
+                       @* <ul class="list">
+                            <li><a class="active" href="#"><span>Category</span> : Household</a></li>
+                            <li><a href="#"><span>Availibility</span> : In Stock</a></li>
+                        </ul>*@
+                        <p>
+                            @Model.Description
+                        </p>
+                        <div class="product_count">
+                            <label for="qty">Quantity:</label>
+                            <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
+                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                    class="increase items-count" type="button">
+                                <i class="lnr lnr-chevron-up"></i>
+                            </button>
+                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp);&amp; sst > 0 ) result.value--;return false;"
+                                    class="reduced items-count" type="button">
+                                <i class="lnr lnr-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div class="card_area d-flex align-items-center">
+                            <a asp-controller="Cart" asp-action="buy" asp-route-id="@Model.Id" class="primary-btn">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

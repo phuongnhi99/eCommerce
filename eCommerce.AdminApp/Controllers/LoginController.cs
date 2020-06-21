@@ -39,22 +39,26 @@ namespace eCommerce.AdminApp.Controllers
         public async Task<IActionResult> Index(LoginRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+                return PartialView(ModelState);
 
             var result = await _userApiClient.Authenticate(request);
-            var userPrincipal = this.ValidateToken(result.ResultObj);
-            var authProperties = new AuthenticationProperties
+            if (result.ResultObj != null)
             {
-                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
-                IsPersistent = false
-            };
-            HttpContext.Session.SetString("Token", result.ResultObj);
-            await HttpContext.SignInAsync(
-            CookieAuthenticationDefaults.AuthenticationScheme,
-            userPrincipal,
-            authProperties);
+                var userPrincipal = this.ValidateToken(result.ResultObj);
+                var authProperties = new AuthenticationProperties
+                {
+                    ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
+                    IsPersistent = false
+                };
+                HttpContext.Session.SetString("Token", result.ResultObj);
+                await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                userPrincipal,
+                authProperties);
 
-            return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "User");
+            }
+            else return View();
         }
 
         private ClaimsPrincipal ValidateToken(string jwtToken)

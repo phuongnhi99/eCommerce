@@ -11,9 +11,10 @@ namespace eCommerce.AdminApp.Services
 {
     public interface IProductApiClient
     {
-        Task<ApiResult<ProductViewModel>> GetById(int id);
         Task<PagedResult<ProductViewModel>>GetAllPaging(GetManageProductPagingRequest request);
         Task<ApiResult<bool>> CreateProduct(ProductCreateRequest request);
-        Task<ApiResult<bool>> UpdateProduct( int id, ProductUpdateRequest request);
+        Task<ApiResult<bool>> UpdateProduct(ProductUpdateRequest request);
+        Task<ApiResult<bool>> Delete(int id);
+        Task<ProductViewModel> GetProductById(int id);
     }
 }

@@ -16,5 +16,8 @@ namespace eCommerce.ViewModels.Common
         {
             IsSuccessed = true;
         }
+
+       
+        
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model eCommerce.ViewModels.Catalog.Carts.CartItemViewModel
 @{
     ViewData["Title"] = "Thông tin mua hàng";
 }
@@ -7,7 +7,7 @@
     <div class="container">
         <div class="returning_customer">
             <div class="check_title">
-                <h2>Bạn vui lòng đăng nhập để mua hàng. <a asp-controller="Login" asp-action="Index">Click để đăng nhập</a></h2>            
+                <h2>Bạn vui lòng đăng nhập để mua hàng. <a asp-controller="Login" asp-action="Index">Click để đăng nhập</a></h2>
             </div>
         </div>
         <div class="billing_details">
@@ -41,15 +41,18 @@
                     <div class="order_box">
                         <h2>Thông tin đơn hàng</h2>
                         <ul class="list">
+
                             <li><a href="#">Sản phẩm <span>Giá</span></a></li>
-                            <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                            <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                            <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                        </ul>
+                            @foreach (var item in ViewBag.cart)
+                            {
+                                <li><a href="#">@item.Prod_Name<span class="middle">x @item.Quantity</span> <span class="last">@Math.Round(item.Price * item.Quantity, 2) đ</span></a></li>
+                            }
+                             
+                            </ul>
                         <ul class="list list_2">
-                            <li><a href="#">Tạm tính <span>$2160.00</span></a></li>
-                            <li><a href="#">Phí giao hàng <span>$50.00</span></a></li>
-                            <li><a href="#">Tổng cộng <span>$2210.00</span></a></li>
+                            <li><a href="#">Tạm tính <span>@ViewBag.total đ</span></a></li>
+                            
+                            <li><a href="#">Tổng cộng <span>@ViewBag.total đ</span></a></li>
                         </ul>
 
                     </div>

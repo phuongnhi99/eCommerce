@@ -28,17 +28,18 @@ namespace eCommerce.AdminApp.Services
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<ApiResult<ProductViewModel>> GetById(int id)
+        public async Task<ProductViewModel> GetProductById(int id)
         {
-            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            //var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
             var response = await client.GetAsync($"/api/products/{id}");
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
-                return JsonConvert.DeserializeObject<ApiSuccessResult<ProductViewModel>>(body);
-            return JsonConvert.DeserializeObject<ApiErrorResult<ProductViewModel>>(body);
+                return JsonConvert.DeserializeObject<ProductViewModel>(body);
+            return JsonConvert.DeserializeObject<ProductViewModel>(body);
+
         }
         public async Task<ApiResult<bool>> CreateProduct(ProductCreateRequest request)
         {
@@ -60,14 +61,14 @@ namespace eCommerce.AdminApp.Services
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
             //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", request.BearerToken);
-            var response = await client.GetAsync($"/api/Products?PageIndex={request.PageIndex}&PageSize={request.PageSize}");
+            var response = await client.GetAsync($"/api/Products?PageIndex={request.PageIndex}&PageSize={request.PageSize}&keyword={request.Keyword}");
             var body = await response.Content.ReadAsStringAsync();
             var products = JsonConvert.DeserializeObject<PagedResult<ProductViewModel>>(body);
             return products;
         }
 
-        public async Task<ApiResult<bool>> UpdateProduct(int id, ProductUpdateRequest request)
-        {
+        public async Task<ApiResult<bool>> UpdateProduct(ProductUpdateRequest request)
+            {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
             //var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
@@ -77,12 +78,25 @@ namespace eCommerce.AdminApp.Services
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync($"/api/Products/{id}", httpContent);
+            var response = await client.PutAsync($"/api/Products", httpContent);
             var result = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(result);
 
             return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(result);
+        }
+
+        public async Task<ApiResult<bool>> Delete(int id)
+        {
+            //var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+            var response = await client.DeleteAsync($"/api/products/{id}");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(body);
+            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(body);
         }
     }
 }

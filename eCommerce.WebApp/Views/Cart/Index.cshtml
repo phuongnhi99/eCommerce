@@ -1,4 +1,4 @@
-﻿
+﻿@model eCommerce.ViewModels.Catalog.Carts.CartItemViewModel
 @{
     ViewData["Title"] = "Giỏ hàng";
 }
@@ -18,142 +18,78 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="img/cart.jpg" alt="">
+
+
+                        @foreach (var item in ViewBag.cart)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img width="150" height="100" src="~/img/product/shoe.jpg" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <p>@item.Prod_Name</p>
+                                        </div>
                                     </div>
-                                    <div class="media-body">
-                                        <p>Minimalistic shop for multipurpose use</p>
+                                </td>
+                                <td>
+                                    <h5>@item.Price</h5>
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <input type="text" name="qty" id="sst" maxlength="12" value="@item.Quantity" title="Quantity:"
+                                               class="input-text qty">
+                                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                                    class="increase items-count" type="button">
+                                                <i class="lnr lnr-chevron-up"></i>
+                                            </button>
+                                            <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                                    class="reduced items-count" type="button">
+                                                <i class="lnr lnr-chevron-down"></i>
+                                            </button>
+                                        </div>
+                                </td>
+                                <td>
+                                    <h5>@Math.Round(item.Price * item.Quantity, 2) đ</h5>
+                                </td>
+                                <td>
+                                    <a asp-controller="Cart" asp-action="remove" asp-route-id="@item.Prod_ID" class="genric-btn primary-border small">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                            
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <h5>Tạm tính</h5>
+                                </td>
+                                <td>
+                                    <h5>@ViewBag.total đ</h5>
+                                </td>
+                            </tr>
+                            <tr class="out_button_area">
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <div class="checkout_btn_inner d-flex align-items-center">
+                                        <a class="gray_btn" href="#">Cập nhật giỏ hàng</a>
+                                        <a class="primary-btn" asp-controller="OrderInfo" asp-action="Index">Thêm thông tin mua hàng</a>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h5>$360.00</h5>
-                            </td>
-                            <td>
-                                <div class="product_count">
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                           class="input-text qty">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button">
-                                        <i class="lnr lnr-chevron-up"></i>
-                                    </button>
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button">
-                                        <i class="lnr lnr-chevron-down"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <h5>$720.00</h5>
-                            </td>
-                            <td>
-                                <a href="#" class="genric-btn primary-border small">Xóa</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="img/cart.jpg" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Minimalistic shop for multipurpose use</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h5>$360.00</h5>
-                            </td>
-                            <td>
-                                <div class="product_count">
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                           class="input-text qty">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button">
-                                        <i class="lnr lnr-chevron-up"></i>
-                                    </button>
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button">
-                                        <i class="lnr lnr-chevron-down"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <h5>$720.00</h5>
-                            </td>
-                            <td>
-                                <a href="#" class="genric-btn primary-border small">Xóa</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <img src="img/cart.jpg" alt="">
-                                    </div>
-                                    <div class="media-body">
-                                        <p>Minimalistic shop for multipurpose use</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h5>$360.00</h5>
-                            </td>
-                            <td>
-                                <div class="product_count">
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                           class="input-text qty">
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                            class="increase items-count" type="button">
-                                        <i class="lnr lnr-chevron-up"></i>
-                                    </button>
-                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                            class="reduced items-count" type="button">
-                                        <i class="lnr lnr-chevron-down"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <h5>$720.00</h5>
-                            </td>
-                            <td>
-                                <a href="#" class="genric-btn primary-border small">Xóa</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                <h5>Tạm tính</h5>
-                            </td>
-                            <td>
-                                <h5>$2160.00</h5>
-                            </td>
-                        </tr>
-                        <tr class="out_button_area">
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                            </td>
-                            <td>
-                                <div class="checkout_btn_inner d-flex align-items-center">
-                                    <a class="gray_btn" href="#">Cập nhật giỏ hàng</a>
-                                    <a class="primary-btn" asp-controller="OrderInfo" asp-action="Index">Thêm thông tin mua hàng</a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                                </td>
+                            </tr>
+                        </tbody>
                 </table>
             </div>
         </div>

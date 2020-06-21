@@ -112,13 +112,13 @@ namespace eCommerce.Application.Catalog.Products
                         join c in _context.Categories on pic.CategoryId equals c.Id
                         select new { p, pt, pic };
 
-         /*   if (!string.IsNullOrEmpty(request.Keyword))
+            if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.pt.Name.Contains(request.Keyword));
-*/
-          /*  if (request.CategoryIds.Count > 0)
-            {
-                query = query.Where(p => request.CategoryIds.Contains(p.pic.CategoryId));
-            }*/
+
+            /*  if (request.CategoryIds.Count > 0)
+              {
+                  query = query.Where(p => request.CategoryIds.Contains(p.pic.CategoryId));
+              }*/
 
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
@@ -159,7 +159,7 @@ namespace eCommerce.Application.Catalog.Products
                 Id = product.Id,
                 DateCreated = product.DateCreated,
                 Description = productTranslation != null ? productTranslation.Description : null,
-                //LanguageId = productTranslation.LanguageId,
+                LanguageId = productTranslation.LanguageId,
                 Details = productTranslation != null ? productTranslation.Details : null,
                 Name = productTranslation != null ? productTranslation.Name : null,
                 OriginalPrice = product.OriginalPrice,
@@ -184,7 +184,11 @@ namespace eCommerce.Application.Catalog.Products
             productTranlations.SeoDescription = request.SeoDescription;
             productTranlations.SeoTitle = request.SeoTitle;*/
             productTranlations.Description = request.Description;
+            product.Price = request.Price;
+            product.OriginalPrice = request.OriginalPrice;
+            product.Stock = request.Stock;
             /*productTranlations.Details = request.Details;*/
+
             //Save Image
             if (request.ThumbnailImage != null)
             { 
@@ -252,7 +256,7 @@ namespace eCommerce.Application.Catalog.Products
                     OriginalPrice = x.p.OriginalPrice,
                     Price = x.p.Price,
                     SeoAlias = x.pt.SeoAlias,
-                    SeoDescription = x.pt.SeoDescription,
+                   SeoDescription = x.pt.SeoDescription,
                     SeoTitle = x.pt.SeoTitle,
                     Stock = x.p.Stock,
                     ViewCount = x.p.ViewCount
